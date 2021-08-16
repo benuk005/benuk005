@@ -3,10 +3,12 @@ from flask_cors import cross_origin
 import sklearn
 import pickle
 import pandas as pd
+import gzip
 
 app = Flask(__name__)
-model = pickle.load(open("RF_Airticket_price_prediction.pkl", "rb"))
-
+#model = pickle.load(open("RF_Airticket_price_prediction.pkl", "rb"))
+with gzip.open('RF_Airticket_price_prediction.pkl', 'rb') as ifp:
+    model=pickle.load(ifp)
 
 
 @app.route("/")
